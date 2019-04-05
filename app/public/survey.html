@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Friend Finder</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Importing Chosen for slightly better looking selection boxes. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+</head>
+
+<body>
+
+    <div id="matchModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Your Friend Match</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="nameDiv">Placeholder</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1>Friendship Survey</h1>
+
+    <!-- I didn't include a picture url just to save time.  If I did then I'd return the whole json object (rather than just the name) and parse out the name and the picture link in the script below, then populate the modal with both elements. -->
+
+    <form>
+        <div class="form-group">
+            <label for="name">Your name (Required)</label>
+            <textarea class="form-control" id="respondantName" rows="1"></textarea>
+        </div>
+    </form>
+
+    <h2><strong>Question 1</strong></h2>
+    <h3>Do you like answering arbitrary questions high, or low?</h3>
+    <select id="q1" class="chosen-select" style="width: 160px;">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+
+    </div>
+
+    <h2><strong>Question 2</strong></h2>
+    <h3>Cats or dogs?</h3>
+    <select id="q2" class="chosen-select" style="width: 160px;">
+        <option value="1">1 (Cats)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (Dogs)</option>
+    </select>
+
+    <h2><strong>Question 3</strong></h2>
+    <h3>Chocolate?</h3>
+    <select id="q3" class="chosen-select" style="width: 160px;">
+        <option value="1">1 (No (Wrong))</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (Hell yeah! (Right))</option>
+    </select>
+
+    <h2><strong>Question 4</strong></h2>
+    <h3>Rainbows have how many primary colors?</h3>
+    <select id="q4" class="chosen-select" style="width: 160px;">
+        <option value="1">1 (6)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (7)</option>
+    </select>
+
+    <h2><strong>Question 5</strong></h2>
+    <h3>The number you chose is equal to:</h3>
+    <select id="q5" class="chosen-select" style="width: 160px;">
+        <option value="1">1 (1)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (5)</option>
+    </select>
+
+    <h2><strong>Question 6</strong></h2>
+    <h3>Do you like sarcasm?</h3>
+    <select id="q6" class="chosen-select" style="width: 160px;">
+        <option value="1">1 (It's the worst)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (Oh, it's the *worst*)</option>
+    </select>
+
+    <h2><strong>Question 7</strong></h2>
+    <h3>What's cooler than being cool?</h3>
+    <select id="q7" class="chosen-select" style="width: 160px;">
+        <option value="1">1 (Ice cold)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (Absolute zero)</option>
+    </select>
+
+    <h2><strong>Question 8</strong></h2>
+    <h3>Bears are...?</h3>
+    <select id="q8" class="chosen-select" style="width: 160px;">
+        <option value="1">1 (Cuddly)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (Scary)</option>
+    </select>
+
+    <h2><strong>Question 9</strong></h2>
+    <h3>What is love?</h3>
+    <select id="q9" class="chosen-select" style="width: 160px;">
+        <option value="1">1 (Baby don't hurt me)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (No more)</option>
+    </select>
+
+    <h2><strong>Question 10</strong></h2>
+    <h3>How well have these questions stuck to an actual 1-5 scale?</h3>
+    <select id="q10" class="chosen-select" style="width: 160px;">
+        <option value="1">1 (Not at all)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (No, really, they haven't)</option>
+    </select>
+    
+    <br>
+    <br>
+    
+    <button type="button" class="btn btn-primary submit">Submit</button>
+
+    <!-- Script to send form response data to the database -->
+    <script>
+        $(".chosen-select").chosen();
+
+        $(".submit").on("click", function (event) {
+            event.preventDefault();
+
+            var newFriend = {
+                name: $("#respondantName").val().trim(),
+                question1: $("#q1").val().trim(),
+                question2: $("#q2").val().trim(),
+                question3: $("#q3").val().trim(),
+                question4: $("#q4").val().trim(),
+                question5: $("#q5").val().trim(),
+                question6: $("#q6").val().trim(),
+                question7: $("#q7").val().trim(),
+                question8: $("#q8").val().trim(),
+                question9: $("#q9").val().trim(),
+                question10: $("#q10").val().trim(),
+            };
+
+            $.post("/api/friends", newFriend, function (bestMatch) {
+                $("#nameDiv").text(bestMatch);
+                $("#matchModal").modal("show");
+            })
+        })
+    </script>
+</body>
+
+</html>
